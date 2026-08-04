@@ -1,3 +1,4 @@
+using CSharpFunctionalExtensions;
 using MediaBoomService.Domain.Users.ValueObjects;
 
 namespace MediaBoomService.Domain.Users;
@@ -11,7 +12,7 @@ public sealed class User
     private User() { }
 
     private User(
-        Guid id,
+        UserId id,
         Email email,
         string logoUrl,
         DateTime createdAtUtc,
@@ -29,7 +30,7 @@ public sealed class User
     /// <summary>
     /// Gets the unique identifier of the user.
     /// </summary>
-    public Guid Id { get; private set; }
+    public UserId Id { get; private set; } = null!;
 
     /// <summary>
     /// Gets the email address of the user.
@@ -66,14 +67,14 @@ public sealed class User
     /// <param name="passwordHash">The hashed password of the user.</param>
     /// <param name="username">The username of the user.</param>
     /// <returns></returns>
-    public static User Create(
-        Guid id,
+    public static Result<User> Create(
+        UserId id,
         Email email,
         string logoUrl,
         DateTime createdAtUtc,
         string passwordHash,
         string username)
     {
-        return new User(id, email, logoUrl, createdAtUtc, passwordHash, username);
+        return Result.Success(new User(id, email, logoUrl, createdAtUtc, passwordHash, username));
     }
 }

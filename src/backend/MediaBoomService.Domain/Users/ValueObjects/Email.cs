@@ -3,8 +3,12 @@ using Shared;
 
 namespace MediaBoomService.Domain.Users.ValueObjects;
 
+/// <summary>
+/// Represents an email address value object.
+/// </summary>
 public record Email
 {
+    // Ef core
     private Email() { }
 
     private Email(string value)
@@ -12,8 +16,16 @@ public record Email
         Value = value;
     }
 
+    /// <summary>
+    /// Gets the email address value.
+    /// </summary>
     public string Value { get; }
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="Email"/> class with the specified value.
+    /// </summary>
+    /// <param name="value">The email address value.</param>
+    /// <returns>The result of the creation operation.</returns>
     public static Result<Email, Error> Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
