@@ -1,6 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+    <PackageReference Include="Microsoft.OpenApi" Version="2.7.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MediaBoomService.Application\MediaBoomService.Application.csproj" />
     <ProjectReference Include="..\MediaBoomService.Contracts\MediaBoomService.Contracts.csproj" />
     <ProjectReference Include="..\MediaBoomService.Infrastructure.Postgres\MediaBoomService.Infrastructure.Postgres.csproj" />
