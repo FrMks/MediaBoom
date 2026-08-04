@@ -1,4 +1,5 @@
 using CSharpFunctionalExtensions;
+using MediaBoomService.Domain;
 using Shared;
 
 namespace MediaBoomService.Domain.Users.ValueObjects;
@@ -31,6 +32,13 @@ public record Email
         if (string.IsNullOrWhiteSpace(value))
         {
             return Error.Validation(null, "Email cannot be empty.");
+        }
+
+        if (value.Length > LengthConstants.LENGTH254)
+        {
+            return Error.Validation(
+                "email.length.is.invalid",
+                $"Email cannot be longer than {LengthConstants.LENGTH254} characters.");
         }
 
         if (!IsValidEmail(value))
