@@ -25,16 +25,23 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(LengthConstants.LENGTH254)
             .IsRequired();
 
+        builder.HasIndex(u => u.Email)
+            .IsUnique()
+            .HasDatabaseName("ux_users_email");
+
         builder.Property(u => u.LogoUrl)
             .HasColumnName("logo_url")
+            .HasMaxLength(LengthConstants.LENGTH2048)
             .IsRequired();
 
         builder.Property(u => u.PasswordHash)
             .HasColumnName("password_hash")
+            .HasMaxLength(LengthConstants.LENGTH512)
             .IsRequired();
 
         builder.Property(u => u.Username)
             .HasColumnName("username")
+            .HasMaxLength(LengthConstants.LENGTH50)
             .IsRequired();
 
         builder.Property(u => u.CreatedAtUtc)
