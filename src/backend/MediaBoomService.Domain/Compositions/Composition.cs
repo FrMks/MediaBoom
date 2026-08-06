@@ -13,8 +13,8 @@ public sealed class Composition
         CompositionId id,
         UserId uploadedByUserId,
         Guid fileId,
-        string title,
-        string artistName,
+        Title title,
+        ArtistName artistName,
         DateTime publishedAtUtc)
     {
         Id = id;
@@ -25,16 +25,34 @@ public sealed class Composition
         PublishedAtUtc = publishedAtUtc;
     }
 
+    /// <summary>
+    /// Gets the unique identifier of the composition.
+    /// </summary>
     public CompositionId Id { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets the identifier of the user who uploaded the composition.
+    /// </summary>
     public UserId UploadedByUserId { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets the identifier of the uploaded file.
+    /// </summary>
     public Guid FileId { get; private set; }
 
-    public string Title { get; private set; }
+    /// <summary>
+    /// Gets the title of the composition.
+    /// </summary>
+    public Title Title { get; private set; } = null!;
 
-    public string ArtistName { get; private set; }
+    /// <summary>
+    /// Gets the name of the composition's artist.
+    /// </summary>
+    public ArtistName ArtistName { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets the UTC timestamp when the composition was published.
+    /// </summary>
     public DateTime PublishedAtUtc { get; private set; }
 
     /// <summary>
@@ -45,12 +63,12 @@ public sealed class Composition
     /// <param name="title">The title of the composition.</param>
     /// <param name="artistName">The name of the artist.</param>
     /// <param name="publishedAtUtc">The UTC timestamp when the composition was published.</param>
-    /// <returns></returns>
+    /// <returns>A successful result containing the created composition.</returns>
     public static Result<Composition> Create(
         UserId uploadedByUserId,
         Guid fileId,
-        string title,
-        string artistName,
+        Title title,
+        ArtistName artistName,
         DateTime publishedAtUtc)
     {
         return Result.Success(new Composition(
