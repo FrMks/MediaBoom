@@ -2,6 +2,7 @@ using System.Data.Common;
 using MediaBoomService.Domain.Compositions;
 using MediaBoomService.Domain.UserFavoriteCompositions;
 using MediaBoomService.Domain.Users;
+using MediaBoomService.Domain.OutboxMessages;
 using Microsoft.EntityFrameworkCore;
 using Shared.Core.Database;
 
@@ -29,6 +30,7 @@ public sealed class MediaBoomServiceDbContext : DbContext, IDbConnectionFactory
     public DbSet<User> Users => Set<User>();
     public DbSet<Composition> Compositions => Set<Composition>();
     public DbSet<UserFavoriteComposition> UserFavoriteCompositions => Set<UserFavoriteComposition>();
+    public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 
     public DbConnection GetDbConnection() => Database.GetDbConnection();
 }
