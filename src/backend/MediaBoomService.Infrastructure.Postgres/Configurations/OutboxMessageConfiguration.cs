@@ -28,6 +28,13 @@ public sealed class OutboxMessageConfiguration : IEntityTypeConfiguration<Outbox
             .HasColumnType("jsonb")
             .IsRequired();
 
+        builder.Property(message => message.Status)
+            .HasColumnName("status")
+            .HasConversion<string>()
+            .HasMaxLength(32)
+            .HasDefaultValue(OutboxMessageStatus.Pending)
+            .IsRequired();
+
         builder.Property(message => message.OccurredAtUtc)
             .HasColumnName("occurred_at_utc")
             .IsRequired();

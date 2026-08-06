@@ -20,6 +20,7 @@ public sealed class OutboxMessage
         MessageType = messageType;
         Payload = payload;
         OccurredAtUtc = occurredAtUtc;
+        Status = OutboxMessageStatus.Pending;
         RetryCount = 0;
     }
 
@@ -39,6 +40,11 @@ public sealed class OutboxMessage
     public string Payload { get; private set; } = null!;
 
     /// <summary>
+    /// Gets the current publishing status of the message.
+    /// </summary>
+    public OutboxMessageStatus Status { get; private set; }
+
+    /// <summary>
     /// Gets the UTC timestamp when the message was created.
     /// </summary>
     public DateTime OccurredAtUtc { get; private set; }
@@ -52,6 +58,41 @@ public sealed class OutboxMessage
     /// Gets the number of publishing attempts.
     /// </summary>
     public int RetryCount { get; private set; }
+
+    /// <summary>
+    /// Marks the message as currently being published.
+    /// </summary>
+    public void MarkAsProcessing()
+    {
+        Status = OutboxMessageStatus.Processing;
+    }
+
+    /// <summary>
+    /// Marks the message as successfully published.
+    /// </summary>
+    /// <param name="processedAtUtc">The UTC timestamp of successful publishing.</param>
+    public void MarkAsProcessed(DateTime processedAtUtc)
+    {
+        Status = OutboxMessageStatus.Processed;
+        ProcessedAtUtc = processedAtUtc;
+    }
+
+    /// <summary>
+    /// Increases the retry count and returns the message to the pending state.
+    /// </summary>
+    public void ScheduleRetry()
+    {
+        RetryCount++;
+        Status = OutboxMessageStatus.Pending;
+    }
+
+    /// <summary>
+    /// Marks the message as permanently failed.
+    /// </summary>
+    public void MarkAsFailed()
+    {
+        Status = OutboxMessageStatus.Failed;
+    }
 
     /// <summary>
     /// Creates a new unprocessed outbox message.
