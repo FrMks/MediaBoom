@@ -10,6 +10,7 @@
       "args": [],
       "cwd": "${workspaceFolder}/src/backend/MediaBoomService.Presentation",
       "stopAtEntry": false,
+      "envFile": "${workspaceFolder}/src/backend/.env",
       "serverReadyAction": {
         "action": "openExternally",
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
