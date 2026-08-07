@@ -1,5 +1,5 @@
 import {
-  Music,
+  Clapperboard,
   Eye,
   Heart,
   LockKeyhole,
@@ -7,17 +7,27 @@ import {
   Zap,
 } from 'lucide-react'
 
-import { Button } from './components/ui/button'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from '@/components/ui/input-group'
+import { MediaBoomLogo } from '@/components/ui/media-boom-logo'
+import { Separator } from '@/components/ui/separator'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import './App.css'
 
 const benefits = [
   {
     icon: Zap,
     title: 'Мгновенный доступ',
-    description: 'Слушай любимую музыку без задержек',
+    description: 'Смотри любимые медиа без задержек',
   },
   {
-    icon: Music,
+    icon: Clapperboard,
     title: 'Большая библиотека',
     description: 'Фильмы, сериалы, шоу и многое другое',
   },
@@ -33,12 +43,7 @@ function App() {
     <main className="login-page">
       <section className="login-shell" aria-label="Вход в MediaBoom">
         <aside className="login-showcase">
-          <a className="brand" href="/" aria-label="MediaBoom — на главную">
-            <span className="brand-mark">MB</span>
-            <span className="brand-name">
-              Media<span>Boom</span>
-            </span>
-          </a>
+          <MediaBoomLogo href="/" aria-label="MediaBoom — на главную" />
 
           <div className="showcase-copy">
             <p className="showcase-kicker">Твой контент.</p>
@@ -68,62 +73,82 @@ function App() {
         </aside>
 
         <div className="login-panel">
-          <div className="auth-tabs" role="tablist" aria-label="Авторизация">
-            <button className="auth-tab is-active" type="button" role="tab" aria-selected="true">
-              Вход
-            </button>
-            <button className="auth-tab" type="button" role="tab" aria-selected="false">
-              Регистрация
-            </button>
-          </div>
+          <Tabs value="login" className="w-full">
+            <TabsList variant="line" className="mb-12 grid w-full grid-cols-2">
+              <TabsTrigger value="login">Вход</TabsTrigger>
+              <TabsTrigger value="register">Регистрация</TabsTrigger>
+            </TabsList>
 
-          <form className="login-form" onSubmit={(event) => event.preventDefault()}>
-            <label className="field">
-              <span className="sr-only">Email или имя пользователя</span>
-              <UserRound aria-hidden="true" />
-              <input
-                name="login"
-                type="text"
-                placeholder="Email или имя пользователя"
-                autoComplete="username"
-              />
-            </label>
+            <TabsContent value="login">
+              <form
+                className="grid gap-4.5"
+                onSubmit={(event) => event.preventDefault()}
+              >
+                <InputGroup>
+                  <InputGroupInput
+                    aria-label="Email или имя пользователя"
+                    name="login"
+                    type="text"
+                    placeholder="Email или имя пользователя"
+                    autoComplete="username"
+                  />
+                  <InputGroupAddon align="inline-start">
+                    <UserRound aria-hidden="true" />
+                  </InputGroupAddon>
+                </InputGroup>
 
-            <label className="field">
-              <span className="sr-only">Пароль</span>
-              <LockKeyhole aria-hidden="true" />
-              <input
-                name="password"
-                type="password"
-                placeholder="Пароль"
-                autoComplete="current-password"
-              />
-              <button className="password-toggle" type="button" aria-label="Показать пароль">
-                <Eye aria-hidden="true" />
-              </button>
-            </label>
+                <InputGroup>
+                  <InputGroupInput
+                    aria-label="Пароль"
+                    name="password"
+                    type="password"
+                    placeholder="Пароль"
+                    autoComplete="current-password"
+                  />
+                  <InputGroupAddon align="inline-start">
+                    <LockKeyhole aria-hidden="true" />
+                  </InputGroupAddon>
+                  <InputGroupAddon align="inline-end">
+                    <InputGroupButton aria-label="Показать пароль">
+                      <Eye aria-hidden="true" />
+                    </InputGroupButton>
+                  </InputGroupAddon>
+                </InputGroup>
 
-            <div className="form-options">
-              <label className="remember-me">
-                <input type="checkbox" name="remember" defaultChecked />
-                <span>Запомнить меня</span>
-              </label>
-              <a href="/forgot-password">Забыли пароль?</a>
-            </div>
+                <div className="my-1 flex items-center justify-between gap-4 text-xs">
+                  <label className="inline-flex cursor-pointer items-center gap-2.5 text-white/65">
+                    <Checkbox name="remember" defaultChecked />
+                    <span>Запомнить меня</span>
+                  </label>
+                  <a
+                    className="font-medium text-amber-400 no-underline hover:underline"
+                    href="/forgot-password"
+                  >
+                    Забыли пароль?
+                  </a>
+                </div>
 
-            <Button
-              className="login-submit"
-              variant="mediaboomLoginBtn"
-              size="loginBtnSize"
-              type="submit"
-            >
-              Войти
-            </Button>
+                <Button
+                  className="h-14 w-full rounded-lg text-base"
+                  variant="mediaboomLoginBtn"
+                  size="loginBtnSize"
+                  type="submit"
+                >
+                  Войти
+                </Button>
 
-            <p className="signup-link">
-              Ещё нет аккаунта? <a href="/register">Зарегистрироваться</a>
-            </p>
-          </form>
+                <p className="mt-4 text-center text-xs text-white/50">
+                  Ещё нет аккаунта?{' '}
+                  <a
+                    className="font-medium text-amber-400 no-underline hover:underline"
+                    href="/register"
+                  >
+                    Зарегистрироваться
+                  </a>
+                </p>
+              </form>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
     </main>

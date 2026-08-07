@@ -21,7 +21,9 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
         mediaboom: mediaboomGeneralBtn,
-        mediaboomLoginBtn: cn(mediaboomGeneralBtn, "font-bold")
+        mediaboomLoginBtn: cn(mediaboomGeneralBtn, "font-bold"),
+        mediaboomSocial:
+          "border-white/15 bg-white/[0.03] text-white/80 hover:border-amber-400/45 hover:bg-amber-400/[0.06] hover:text-white",
       },
       size: {
         default:
@@ -35,7 +37,8 @@ const buttonVariants = cva(
         "icon-sm":
           "size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-md",
         "icon-lg": "size-10",
-        loginBtnSize: "h-15 w-100 px-10 text-[1.5rem]"
+        loginBtnSize: "h-15 w-100 px-10 text-[1.5rem]",
+        social: "h-13 gap-2 px-4 text-sm",
       },
     },
     defaultVariants: {
