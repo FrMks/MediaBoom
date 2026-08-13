@@ -1,5 +1,4 @@
 using CSharpFunctionalExtensions;
-using MediaBoomService.Domain;
 using Shared;
 
 namespace MediaBoomService.Domain.Users.ValueObjects;
