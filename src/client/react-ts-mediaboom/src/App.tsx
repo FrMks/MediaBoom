@@ -1,5 +1,5 @@
 import {
-  Clapperboard,
+  Music,
   Eye,
   Heart,
   LockKeyhole,
@@ -16,7 +16,6 @@ import {
   InputGroupInput,
 } from '@/components/ui/input-group'
 import { MediaBoomLogo } from '@/components/ui/media-boom-logo'
-import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import './App.css'
 
@@ -24,17 +23,17 @@ const benefits = [
   {
     icon: Zap,
     title: 'Мгновенный доступ',
-    description: 'Смотри любимые медиа без задержек',
+    description: 'Слушаем любимую музыку без задержек',
   },
   {
-    icon: Clapperboard,
-    title: 'Большая библиотека',
-    description: 'Фильмы, сериалы, шоу и многое другое',
+    icon: Music,
+    title: 'Твоя музыкальная библиотека',
+    description: 'Загружай и слушай то, что именно ты хочешь',
   },
   {
     icon: Heart,
-    title: 'Персональный опыт',
-    description: 'Рекомендации и закладки для тебя',
+    title: 'Любимые композиции',
+    description: 'Добавляй понравившиеся песни других пользователей к себе',
   },
 ]
 
@@ -46,13 +45,7 @@ function App() {
           <MediaBoomLogo href="/" aria-label="MediaBoom — на главную" />
 
           <div className="showcase-copy">
-            <p className="showcase-kicker">Твой контент.</p>
-            <h1>
-              Твой <span>взрыв эмоций.</span>
-            </h1>
-            <p className="showcase-description">
-              Любимые фильмы, сериалы и шоу в высоком качестве без ограничений.
-            </p>
+            <h1>Твой контент. Твой <span>взрыв эмоций.</span></h1>
           </div>
 
           <ul className="benefit-list">
