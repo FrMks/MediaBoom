@@ -30,6 +30,10 @@ public class CompositionConfiguration : IEntityTypeConfiguration<Composition>
             .HasColumnName("file_id")
             .IsRequired();
 
+        builder.HasIndex(c => c.FileId)
+            .IsUnique()
+            .HasDatabaseName("ux_compositions_file_id");
+
         builder.Property(c => c.Title)
             .HasConversion(title => title.Value, value => Title.Create(value).Value)
             .HasColumnName("title")
