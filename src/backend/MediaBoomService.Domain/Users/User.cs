@@ -16,7 +16,7 @@ public sealed class User
         Email email,
         string logoUrl,
         string passwordHash,
-        string username,
+        Username username,
         DateTime createdAtUtc)
     {
         Id = id;
@@ -50,7 +50,7 @@ public sealed class User
     /// <summary>
     /// Gets the username of the user.
     /// </summary>
-    public string Username { get; private set; }
+    public Username Username { get; private set; }
 
     /// <summary>
     /// Gets the UTC timestamp when the user was created.
@@ -72,7 +72,7 @@ public sealed class User
         Email email,
         string logoUrl,
         string passwordHash,
-        string username,
+        Username username,
         DateTime createdAtUtc)
     {
         return Result.Success(new User(id, email, logoUrl, passwordHash, username, createdAtUtc));

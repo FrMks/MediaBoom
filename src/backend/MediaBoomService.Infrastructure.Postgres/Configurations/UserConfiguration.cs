@@ -40,9 +40,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder.Property(u => u.Username)
+            .HasConversion(u => u.Value, username => Username.Create(username).Value)
             .HasColumnName("username")
-            .HasMaxLength(LengthConstants.LENGTH50)
+            .HasMaxLength(LengthConstants.LENGTH32)
             .IsRequired();
+
+        builder.HasIndex(u => u.Username)
+            .IsUnique()
+            .HasDatabaseName("ux_users_username");
 
         builder.Property(u => u.CreatedAtUtc)
             .HasColumnName("created_at_utc")
