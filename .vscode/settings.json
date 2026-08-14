@@ -1,0 +1,4 @@
+{
+  "dotnet.defaultSolution": "src/backend/MediaBoomService.sln",
+  "omnisharp.defaultLaunchSolution": "src/backend/MediaBoomService.sln"
+}
