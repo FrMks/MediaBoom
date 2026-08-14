@@ -1,4 +1,5 @@
 using MediaBoomService.Infrastructure.Postgres;
+using Microsoft.AspNetCore.HttpLogging;
 
 namespace MediaBoomService.Presentation;
 
@@ -23,7 +24,12 @@ public static class DependencyInjection
                 options.JsonSerializerOptions.IncludeFields = true;
             });
 
-        services.AddHttpLogging();
+        services.AddHttpLogging(logging =>
+        {
+            logging.LoggingFields = HttpLoggingFields.RequestPropertiesAndHeaders
+                                  | HttpLoggingFields.ResponsePropertiesAndHeaders
+                                  | HttpLoggingFields.Duration;
+        });
         services.AddOpenApi();
 
         return services;
