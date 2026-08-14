@@ -6,9 +6,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-mediaboom",
-      "program": "${workspaceFolder}/src/backend/MediaBoomService.Presentation/bin/Debug/net10.0/MediaBoomService.Presentation.dll",
+      "program": "${workspaceFolder}/src/backend/MediaBoomService/MediaBoomService.Presentation/bin/Debug/net10.0/MediaBoomService.Presentation.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/src/backend/MediaBoomService.Presentation",
+      "cwd": "${workspaceFolder}/src/backend/MediaBoomService/MediaBoomService.Presentation",
       "stopAtEntry": false,
       "envFile": "${workspaceFolder}/src/backend/.env",
       "serverReadyAction": {
@@ -23,6 +23,39 @@
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }
+    },
+    {
+      "name": "MediaBoomFileService (ASP.NET Core)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-mediaboom",
+      "program": "${workspaceFolder}/src/backend/MediaBoomFileService/MediaBoomFileService.Presentation/bin/Debug/net10.0/MediaBoomFileService.Presentation.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/backend/MediaBoomFileService/MediaBoomFileService.Presentation",
+      "stopAtEntry": false,
+      "envFile": "${workspaceFolder}/src/backend/.env",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5283"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "MediaBoomService + MediaBoomFileService",
+      "configurations": [
+        "MediaBoomService (ASP.NET Core)",
+        "MediaBoomFileService (ASP.NET Core)"
+      ],
+      "stopAll": true
     }
   ]
 }
