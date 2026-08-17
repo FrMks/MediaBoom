@@ -54,7 +54,7 @@ public class AudioAsset : MediaAsset
     /// <summary>
     /// Codec detected in the uploaded source file.
     /// </summary>
-    public string? SourceCodex { get; private set; }
+    public string? SourceCodec { get; private set; }
 
     /// <summary>
     /// Object-storage key of the generated HLS manifest.
