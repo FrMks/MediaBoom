@@ -50,10 +50,10 @@ public class FileServiceDbContext : DbContext
     /// <summary>
     /// Gets the set of audio assets.
     /// </summary>
-    public DbSet<AudioAsset> VideoAssets => Set<AudioAsset>();
+    public DbSet<AudioAsset> AudioAssets => Set<AudioAsset>();
 
     /// <summary>
     /// Gets the set of audio processing processes.
     /// </summary>
-    public DbSet<AudioProcess> VideoProcess => Set<AudioProcess>();
+    public DbSet<AudioProcess> AudioProcesses => Set<AudioProcess>();
 }
