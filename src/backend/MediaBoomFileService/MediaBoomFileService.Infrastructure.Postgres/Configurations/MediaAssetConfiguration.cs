@@ -57,22 +57,27 @@ public class MediaAssetConfiguration : IEntityTypeConfiguration<MediaAsset>
 
         builder.OwnsOne(m => m.MediaData, mb =>
         {
-            mb.ToJson("media_data");
-
             mb.OwnsOne(md => md.FileName, fb =>
             {
-                fb.Property(x => x.Extension);
-                fb.Property(x => x.Name);
+                fb.Property(x => x.Extension)
+                    .HasColumnName("source_file_extension");
+                fb.Property(x => x.Name)
+                    .HasColumnName("source_file_name");
             });
 
             mb.OwnsOne(md => md.ContentType, ctb =>
             {
-                ctb.Property(x => x.Category).HasConversion<string>();
-                ctb.Property(x => x.Value);
+                ctb.Property(x => x.Category)
+                    .HasConversion<string>()
+                    .HasColumnName("source_media_type");
+                ctb.Property(x => x.Value)
+                    .HasColumnName("source_content_type");
             });
 
-            mb.Property(md => md.SizeBytes);
-            mb.Property(md => md.ExpectedChunksCount);
+            mb.Property(md => md.SizeBytes)
+                .HasColumnName("source_size_bytes");
+            mb.Property(md => md.ExpectedChunksCount)
+                .HasColumnName("expected_chunks_count");
         });
 
         builder.OwnsOne(m => m.SourceObjectKey, kb =>
