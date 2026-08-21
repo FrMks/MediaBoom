@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MediaBoomService.Domain\MediaBoomService.Domain.csproj" />
+    <ProjectReference Include="..\..\MediaBoomService\MediaBoomService.Domain\MediaBoomService.Domain.csproj" />
   </ItemGroup>
 
 </Project>

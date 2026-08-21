@@ -1,0 +1,6 @@
+@MediaBoomFileService.Presentation_HostAddress = http://localhost:5261
+
+GET {{MediaBoomFileService.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
